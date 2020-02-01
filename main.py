@@ -1,3 +1,4 @@
+
 import torch
 import torchvision
 import matplotlib.pyplot as plt
@@ -54,3 +55,20 @@ for epoch in range(EPOCHS):
         loss.backward()
         optimizer.step()
     print(loss)
+
+correct = 0
+total = 0
+
+with torch.no_grad():
+    for data in trainset:
+        X, y = data
+        output = net(X.view(-1, 784))
+        for idx, i in enumerate(output):
+            if torch.argmax(i) ==  y[idx]:
+                correct += 1
+            total += 1
+print("Accuracy: ", round(correct/total, 3))
+
+plt.imshow(X[0].view(28,28))
+plt.show()
+print(torch.argmax(net(X[0].view(-1,784))[0]))
