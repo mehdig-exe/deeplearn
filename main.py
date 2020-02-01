@@ -11,3 +11,16 @@ testset = torch.utils.data.DataLoader(test, batch_size=10, shuffle=True)
 
 import torch.nn as nn
 import torch.nn.functional as F
+
+class Net(nn.Module):
+    def __init__(self):
+        super(nn.Module,self).__init__()
+        self.fc1 = nn.Linear(28*28, 64)
+        self.fc2 = nn.Linear(64, 64)
+        self.fc3 = nn.Linear(64, 64)
+        self.fc4 = nn.Linear(64, 10)
+
+
+net = Net()
+
+print(net)
